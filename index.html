@@ -1662,7 +1662,7 @@ function generateMathQuestion(){
   if(level === 1) return genCountingQuestion();
   if(level === 2) return genQuantityMatchQuestion();
   if(level === 3) return genCompareQuestion();
-  if(level === 4) return genOrderQuestion();
+  if(level === 4) return genOrderQuestionFixed();
   return genAdditionQuestion();
 }
 
@@ -1748,56 +1748,6 @@ function genCompareQuestion(){
   };
 }
 
-function genOrderQuestion(){
-  const max = Math.min(state.maths.countingRange, 10);
-  const kind = pick(["next","missing","arrange"]);
-  if(kind === "next"){
-    const start = 1 + Math.floor(Math.random()*(max-2));
-    const correct = start+1;
-    const distractors = new Set([correct]);
-    while(distractors.size<3){
-      let d = correct + (Math.random()<0.5?-1:1)*(1+Math.floor(Math.random()*2));
-      if(d>=1 && d<=max+1) distractors.add(d);
-    }
-    return {
-      type:"order-next",
-      prompt:`What comes next? ${start}, ${start+... /*placeholder replaced below*/}`,
-      sub:"",
-      sequence:[start],
-      options: shuffle(Array.from(distractors)),
-      answer: correct
-    };
-  } else if(kind === "missing"){
-    const start = 1 + Math.floor(Math.random()*(max-3));
-    const seq = [start,start+1,start+2,start+3];
-    const missingIdx = 1 + Math.floor(Math.random()*2);
-    const correct = seq[missingIdx];
-    const displaySeq = seq.map((n,i)=> i===missingIdx ? "__" : n);
-    const distractors = new Set([correct]);
-    while(distractors.size<3){
-      let d = correct + (Math.random()<0.5?-1:1)*(1+Math.floor(Math.random()*2));
-      if(d>=1 && d<=max+2) distractors.add(d);
-    }
-    return {
-      type:"order-missing",
-      prompt:`Find the missing number: ${displaySeq.join(", ")}`,
-      sub:"",
-      options: shuffle(Array.from(distractors)),
-      answer: correct
-    };
-  } else {
-    const start = 1 + Math.floor(Math.random()*(max-3));
-    const correctSeq = [start,start+1,start+2];
-    return {
-      type:"order-arrange",
-      prompt:"Put the numbers in order",
-      sub:"Tap them from smallest to largest",
-      tiles: shuffle(correctSeq),
-      answer: correctSeq
-    };
-  }
-}
-// fix accidental syntax placeholder above using safer generator
 function genOrderQuestionFixed(){
   const max = Math.min(state.maths.countingRange, 10);
   const kind = pick(["next","missing","arrange"]);
