@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#061957">
+<title>Sonia Sotomayor | Grade 3 Interactive Study Guide</title>
+<style>
+:root{
+  --navy:#061957;--teal:#087C8C;--teal2:#0a98a8;--ink:#172033;--muted:#5e6878;
+  --bg:#f4fbfb;--card:#fff;--line:#dce8ea;--gold:#f3b63a;--green:#218c5b;
+  --red:#b23b3b;--purple:#6657a8;--shadow:0 12px 35px rgba(6,25,87,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#f7fcfc,#eef8f9);color:var(--ink);line-height:1.55}
+button{font:inherit}
+button:focus-visible,a:focus-visible{outline:4px solid rgba(243,182,58,.55);outline-offset:3px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topin{max-width:1120px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--navy)}
+.mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--navy),var(--teal));display:grid;place-items:center;color:#fff;font-weight:900}
+.nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.nav button{border:0;background:#eef6f7;color:var(--navy);padding:9px 12px;border-radius:999px;font-weight:750;cursor:pointer}
+.nav button:hover{background:#dceff1}
+main{max-width:1120px;margin:auto;padding:26px 18px 70px}
+.hero{background:linear-gradient(135deg,var(--navy),#0b3470 56%,var(--teal));color:#fff;border-radius:28px;padding:32px;box-shadow:var(--shadow);overflow:hidden;position:relative}
+.hero:after{content:"⚖";position:absolute;right:25px;bottom:-35px;font-size:190px;opacity:.08}
+.eyebrow{font-weight:850;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;color:#bceff1}
+.hero h1{font-size:clamp(2rem,5vw,4rem);line-height:1.02;margin:8px 0 10px;max-width:760px}
+.hero p{font-size:1.08rem;max-width:760px;color:#e8f6f7;margin:0 0 20px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:0;border-radius:13px;padding:12px 17px;font-weight:850;cursor:pointer;min-height:48px}
+.btn-primary{background:#fff;color:var(--navy)}
+.btn-secondary{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-navy{background:var(--navy);color:#fff}
+.progress-wrap{margin-top:18px;display:flex;align-items:center;gap:12px;max-width:600px}
+.progress{height:12px;background:rgba(255,255,255,.22);border-radius:99px;overflow:hidden;flex:1}
+.progress span{display:block;height:100%;width:0;background:#fff;border-radius:99px;transition:width .35s}
+.section{margin-top:28px}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:12px}
+.section-title h2{margin:0;color:var(--navy);font-size:1.6rem}
+.section-title p{margin:0;color:var(--muted);font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 7px 22px rgba(6,25,87,.06)}
+.story-card{grid-column:span 6;cursor:pointer;transition:.18s transform,.18s box-shadow}
+.story-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.story-card .num{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#e8f6f7;color:var(--teal);font-weight:900}
+.story-card h3{color:var(--navy);margin:10px 0 5px;font-size:1.18rem}
+.story-card p{margin:0;color:#3d4858}
+.word{display:inline-block;padding:2px 7px;border-radius:7px;background:#fff3ce;border-bottom:2px solid var(--gold);font-weight:800}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.time{background:#fff;border:1px solid var(--line);border-radius:17px;padding:15px;text-align:center}
+.year{font-size:1.45rem;font-weight:950;color:var(--teal)}
+.time b{display:block;color:var(--navy);margin:4px 0}
+.vocab{grid-column:span 4}
+.vocab h3{margin:0 0 5px;color:var(--navy)}
+.vocab .term{font-size:1.15rem;font-weight:900;color:var(--teal)}
+.flash-area{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.flash{min-height:260px;background:linear-gradient(145deg,#fff,#f5fbfb);border:2px solid #dbe9eb;border-radius:22px;padding:25px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer}
+.flash .label{font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900;color:var(--teal)}
+.flash .big{font-size:clamp(1.35rem,3vw,2rem);font-weight:900;color:var(--navy);margin:12px 0}
+.flash .hint{color:var(--muted)}
+.controls{display:flex;gap:9px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.quizbox{max-width:760px;margin:auto}
+.qcount{font-size:.88rem;font-weight:850;color:var(--teal);text-transform:uppercase;letter-spacing:.06em}
+.question{font-size:1.45rem;font-weight:900;color:var(--navy);margin:9px 0 16px}
+.choices{display:grid;gap:10px}
+.choice{width:100%;text-align:left;border:2px solid var(--line);background:#fff;padding:14px 16px;border-radius:14px;font-weight:750;cursor:pointer;min-height:54px}
+.choice:hover{border-color:#8fc8ce;background:#f6fcfc}
+.choice.correct{border-color:#72bf98;background:#eaf8f0;color:#165b3d}
+.choice.wrong{border-color:#df9a9a;background:#fff0f0;color:#8e2e2e}
+.feedback{min-height:55px;margin-top:12px;padding:12px 14px;border-radius:13px;background:#f6f9fa;color:#334155}
+.sheet{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sheetbox{border:2px dashed #b9d4d8;border-radius:18px;padding:18px;background:#fff}
+.sheetbox h3{margin:0 0 9px;color:var(--navy)}
+.answer-line{background:#f3f9fa;border-radius:10px;padding:9px 11px;margin:7px 0;font-weight:700}
+.reveal{display:none;margin-top:10px;background:#eaf8f8;border-left:4px solid var(--teal);padding:12px;border-radius:9px}
+.reveal.show{display:block}
+.checklist{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.checklist li{display:flex;gap:9px;align-items:flex-start}
+.tick{width:24px;height:24px;flex:0 0 24px;border-radius:50%;background:#e9f6f7;color:var(--teal);display:grid;place-items:center;font-weight:950}
+.fact-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fact{background:#f5fbfb;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center}
+.fact b{display:block;color:var(--navy);font-size:1.05rem}
+.callout{background:#fff8e8;border:1px solid #f1d38d;border-radius:18px;padding:18px}
+.small{font-size:.9rem;color:var(--muted)}
+.hidden{display:none!important}
+.badge{display:inline-flex;align-items:center;gap:6px;background:#e7f5f6;color:var(--teal);padding:6px 10px;border-radius:999px;font-size:.85rem;font-weight:850}
+footer{text-align:center;color:var(--muted);padding:30px 15px;font-size:.88rem}
+@media(max-width:820px){
+ .story-card,.vocab{grid-column:span 12}.timeline{grid-template-columns:1fr 1fr}.flash-area,.sheet{grid-template-columns:1fr}.fact-strip{grid-template-columns:1fr 1fr}
+ .nav{display:none}.hero{padding:25px}.hero:after{font-size:130px}
+}
+@media(max-width:480px){.timeline,.fact-strip{grid-template-columns:1fr}.card{padding:16px}.hero h1{font-size:2.25rem}}
+@media print{.topbar,.hero-actions,.controls,.quiz-section,.practice-controls{display:none!important}.hero{background:#fff!important;color:#000!important;box-shadow:none;border:1px solid #bbb}.hero p,.eyebrow{color:#222!important}body{background:#fff}.card{box-shadow:none}.section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="topin">
+  <div class="brand"><div class="mark">SI</div><div>SI Analytics Learning Lab</div></div>
+  <nav class="nav" aria-label="Study guide navigation">
+   <button onclick="go('story')">Story</button><button onclick="go('timeline')">Timeline</button><button onclick="go('cards')">Flashcards</button><button onclick="go('quiz')">Quiz</button><button onclick="go('worksheet')">Worksheet Help</button>
+  </nav>
+ </div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="eyebrow">Grade 3 Interactive Biography</div>
+ <h1>Meet Sonia Sotomayor</h1>
+ <p>Learn her story in small, easy steps. Then practice the exact kinds of facts you need for your Sonia Sotomayor study sheet.</p>
+ <div class="hero-actions">
+  <button class="btn btn-primary" onclick="go('story')">Start the Story</button>
+  <button class="btn btn-secondary" onclick="go('quiz')">Try the Quiz</button>
+  <button class="btn btn-secondary" onclick="window.print()">Print Study Notes</button>
+ </div>
+ <div class="progress-wrap"><div class="progress"><span id="progressBar"></span></div><strong id="progressText">0% studied</strong></div>
+</section>
+
+<section class="section" id="quick">
+ <div class="section-title"><h2>Five facts to remember</h2><p>These are your anchor facts.</p></div>
+ <div class="fact-strip">
+  <div class="fact"><b>June 25, 1954</b>Birth date</div>
+  <div class="fact"><b>The Bronx, New York City</b>Birthplace</div>
+  <div class="fact"><b>Princeton + Yale</b>Education</div>
+  <div class="fact"><b>2009</b>Joined the U.S. Supreme Court</div>
+ </div>
+</section>
+
+<section class="section" id="story">
+ <div class="section-title"><h2>Her story, one chapter at a time</h2><p>Tap each card as you read it.</p></div>
+ <div class="grid">
+  <article class="card story-card" data-study="1" onclick="markStudied(this)">
+   <div class="num">1</div><h3>A girl from the Bronx</h3>
+   <p>Sonia Maria Sotomayor was born on <span class="word">June 25, 1954</span>, in the <span class="word">Bronx</span>, a part of New York City. Her parents were born in Puerto Rico. Sonia grew up in a Puerto Rican family in New York.</p>
+  </article>
+  <article class="card story-card" data-study="2" onclick="markStudied(this)">
+   <div class="num">2</div><h3>She faced hard things</h3>
+   <p>When Sonia was seven, she learned that she had type 1 diabetes and began taking insulin. Her father died when she was nine. Her mother believed strongly in education and encouraged Sonia and her brother to learn.</p>
+  </article>
+  <article class="card story-card" data-study="3" onclick="markStudied(this)">
+   <div class="num">3</div><h3>A dream to work in law</h3>
+   <p>As a child, Sonia liked the detective Nancy Drew. Later, a television show about a lawyer helped interest her in law. By about age ten, Sonia said she knew she wanted to go to college and become an attorney.</p>
+  </article>
+  <article class="card story-card" data-study="4" onclick="markStudied(this)">
+   <div class="num">4</div><h3>She studied and worked hard</h3>
+   <p>Sonia did very well in school. She went to <span class="word">Princeton University</span>. At first, college was difficult for her, so she spent long hours studying. She improved and graduated with high honors. Then she went to <span class="word">Yale Law School</span>.</p>
+  </article>
+  <article class="card story-card" data-study="5" onclick="markStudied(this)">
+   <div class="num">5</div><h3>Lawyer, then judge</h3>
+   <p>After law school, Sonia worked as an assistant district attorney in New York. Later she became a federal judge. She served on the U.S. District Court and then the U.S. Court of Appeals.</p>
+  </article>
+  <article class="card story-card" data-study="6" onclick="markStudied(this)">
+   <div class="num">6</div><h3>A historic achievement</h3>
+   <p>In 2009, President Barack Obama nominated Sonia Sotomayor to the <span class="word">U.S. Supreme Court</span>. The Senate confirmed her, and she began serving on August 8, 2009. She became the <span class="word">first Hispanic justice</span> on the U.S. Supreme Court and the third woman to serve as a Supreme Court justice.</p>
+  </article>
+ </div>
+</section>
+
+<section class="section">
+ <div class="callout">
+  <strong>Big idea:</strong> Sonia Sotomayor's story shows how education, hard work, public service, and persistence can shape a person's life. When school became difficult, she kept learning and improving.
+ </div>
+</section>
+
+<section class="section" id="timeline">
+ <div class="section-title"><h2>Build the timeline in your brain</h2><p>Remember the order more than every date.</p></div>
+ <div class="timeline">
+  <div class="time"><div class="year">1954</div><b>Born</b><span>Bronx, New York City</span></div>
+  <div class="time"><div class="year">1976</div><b>Princeton</b><span>Graduated with high honors</span></div>
+  <div class="time"><div class="year">1979</div><b>Yale Law</b><span>Earned her law degree</span></div>
+  <div class="time"><div class="year">1992</div><b>Federal judge</b><span>Joined the U.S. District Court</span></div>
+  <div class="time"><div class="year">2009</div><b>Supreme Court</b><span>Became a U.S. Supreme Court justice</span></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-title"><h2>Words a 3rd grader should know</h2><p>Tap the cards and say each meaning aloud.</p></div>
+ <div class="grid">
+  <div class="card vocab"><div class="term">Judge</div><h3>A person who works in a court</h3><p>A judge listens to legal cases and helps apply the law.</p></div>
+  <div class="card vocab"><div class="term">Justice</div><h3>A judge on the Supreme Court</h3><p>Supreme Court judges are called justices.</p></div>
+  <div class="card vocab"><div class="term">Attorney</div><h3>Another word for lawyer</h3><p>An attorney studies the law and may help people with legal problems.</p></div>
+  <div class="card vocab"><div class="term">Nominate</div><h3>To officially choose someone for a job</h3><p>A president nominates a person to serve on the Supreme Court. The Senate then considers the nomination.</p></div>
+  <div class="card vocab"><div class="term">Confirm</div><h3>To officially approve</h3><p>The U.S. Senate confirmed Sonia Sotomayor's Supreme Court nomination in 2009.</p></div>
+  <div class="card vocab"><div class="term">Persistence</div><h3>Keeping at something</h3><p>Persistence means continuing to work even when something is difficult.</p></div>
+ </div>
+</section>
+
+<section class="section" id="cards">
+ <div class="section-title"><h2>Flashcard practice</h2><p>Think first. Then tap the card to reveal the answer.</p></div>
+ <div class="flash-area">
+  <div class="flash" id="flashCard" onclick="flipCard()" role="button" tabindex="0">
+   <div class="label" id="flashLabel">Question</div>
+   <div class="big" id="flashText"></div>
+   <div class="hint">Tap to flip</div>
+  </div>
+  <div class="card">
+   <h3 style="color:var(--navy);margin-top:0">How to study</h3>
+   <ul class="checklist">
+    <li><span class="tick">1</span><span>Read the question without looking at the answer.</span></li>
+    <li><span class="tick">2</span><span>Say your answer out loud.</span></li>
+    <li><span class="tick">3</span><span>Tap the card and check yourself.</span></li>
+    <li><span class="tick">4</span><span>If you missed it, say the correct answer two times.</span></li>
+   </ul>
+   <div class="controls"><button class="btn btn-teal" onclick="prevCard()">Previous</button><button class="btn btn-navy" onclick="nextCard()">Next</button></div>
+  </div>
+ </div>
+</section>
+
+<section class="section quiz-section" id="quiz">
+ <div class="section-title"><h2>Knowledge check</h2><p>No typing. Just click or tap an answer.</p></div>
+ <div class="card quizbox">
+  <div class="qcount" id="qCount"></div>
+  <div class="question" id="question"></div>
+  <div class="choices" id="choices"></div>
+  <div class="feedback" id="feedback" aria-live="polite">Choose the best answer.</div>
+  <div class="controls"><button class="btn btn-navy hidden" id="nextQ" onclick="nextQuestion()">Next question</button><button class="btn btn-teal hidden" id="restartQ" onclick="restartQuiz()">Try again</button></div>
+ </div>
+</section>
+
+<section class="section" id="worksheet">
+ <div class="section-title"><h2>Worksheet helper</h2><p>Practice the boxes on your study sheet.</p></div>
+ <div class="sheet">
+  <div class="sheetbox"><h3>IS KNOWN FOR...</h3><p>Think: What makes Sonia Sotomayor important?</p><button class="btn btn-teal" onclick="reveal('r1')">Show a Grade 3 answer</button><div class="reveal" id="r1">She is known for working hard, becoming a judge, and becoming the first Hispanic justice on the U.S. Supreme Court.</div></div>
+  <div class="sheetbox"><h3>LIFE EVENTS</h3><p>Choose two or three events.</p><button class="btn btn-teal" onclick="reveal('r2')">Show strong choices</button><div class="reveal" id="r2"><div class="answer-line">• She was born in the Bronx, New York City.</div><div class="answer-line">• She studied at Princeton University and Yale Law School.</div><div class="answer-line">• She became a U.S. Supreme Court justice in 2009.</div></div></div>
+  <div class="sheetbox"><h3>BIRTH DATE & BIRTHPLACE</h3><button class="btn btn-teal" onclick="reveal('r3')">Reveal</button><div class="reveal" id="r3"><div class="answer-line"><b>Birth date:</b> June 25, 1954</div><div class="answer-line"><b>Birthplace:</b> The Bronx, New York City</div><p class="small">Important: Her parents were born in Puerto Rico, but Sonia was born in New York City.</p></div></div>
+  <div class="sheetbox"><h3>EDUCATION</h3><button class="btn btn-teal" onclick="reveal('r4')">Reveal</button><div class="reveal" id="r4"><div class="answer-line">Princeton University</div><div class="answer-line">Yale Law School</div></div></div>
+  <div class="sheetbox"><h3>QUOTE OR SAYING</h3><p>A short source-based quote that is easy to remember:</p><button class="btn btn-teal" onclick="reveal('r5')">Reveal</button><div class="reveal" id="r5"><div class="answer-line">“I knew that when I was ten.”</div><p class="small">She was explaining that, by age ten, she knew she wanted to go to college and become an attorney.</p></div></div>
+  <div class="sheetbox"><h3>LEGACY & ACHIEVEMENTS</h3><button class="btn btn-teal" onclick="reveal('r6')">Reveal</button><div class="reveal" id="r6"><div class="answer-line">• First Hispanic justice on the U.S. Supreme Court</div><div class="answer-line">• Third woman to serve as a U.S. Supreme Court justice</div><div class="answer-line">• Served as a federal judge before joining the Supreme Court</div></div></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="card">
+  <span class="badge">Final 60-second review</span>
+  <h2 style="color:var(--navy)">Can you say these without looking?</h2>
+  <ul class="checklist">
+   <li><span class="tick">✓</span><span>Where was Sonia Sotomayor born?</span></li>
+   <li><span class="tick">✓</span><span>What is her birth date?</span></li>
+   <li><span class="tick">✓</span><span>What two universities did she attend?</span></li>
+   <li><span class="tick">✓</span><span>What job did she dream about as a child?</span></li>
+   <li><span class="tick">✓</span><span>What happened in 2009?</span></li>
+   <li><span class="tick">✓</span><span>What historic “first” did she achieve?</span></li>
+  </ul>
+ </div>
+</section>
+</main>
+
+<footer>
+ Educational study guide based on the supplied Sonia Sotomayor biography source. Designed for Grade 3 review. Progress is saved only in this browser.
+</footer>
+
+<script>
+const flashcards=[
+ ["When was Sonia Sotomayor born?","June 25, 1954"],
+ ["Where was she born?","The Bronx, New York City"],
+ ["Where were her parents born?","Puerto Rico"],
+ ["What health condition did she learn she had at age seven?","Type 1 diabetes"],
+ ["What did her mother strongly value?","Education"],
+ ["What did Sonia want to become?","An attorney, and later a judge"],
+ ["Where did she go to college?","Princeton University"],
+ ["Where did she go to law school?","Yale Law School"],
+ ["What was one early law job she had?","Assistant district attorney in New York"],
+ ["What happened in 2009?","She became a U.S. Supreme Court justice"],
+ ["What historic first did she achieve?","She became the first Hispanic justice on the U.S. Supreme Court"],
+ ["What can we learn from her school story?","Keep working, learning, and improving when something is difficult"]
+];
+let fi=0,flipped=false;
+function renderFlash(){
+ document.getElementById("flashLabel").textContent=flipped?"Answer":"Question";
+ document.getElementById("flashText").textContent=flashcards[fi][flipped?1:0];
+}
+function flipCard(){flipped=!flipped;renderFlash()}
+function nextCard(){fi=(fi+1)%flashcards.length;flipped=false;renderFlash()}
+function prevCard(){fi=(fi-1+flashcards.length)%flashcards.length;flipped=false;renderFlash()}
+document.getElementById("flashCard").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();flipCard()}});
+
+const quiz=[
+ {q:"Where was Sonia Sotomayor born?",a:["Puerto Rico","The Bronx, New York City","Washington, D.C."],c:1,why:"Sonia was born in the Bronx in New York City. Her parents were born in Puerto Rico."},
+ {q:"When was Sonia Sotomayor born?",a:["June 25, 1954","August 8, 2009","June 25, 1976"],c:0,why:"Her birth date is June 25, 1954."},
+ {q:"Which two schools are important in Sonia's higher education?",a:["Harvard and Columbia","Princeton and Yale","Stanford and Duke"],c:1,why:"She graduated from Princeton University and then earned her law degree at Yale Law School."},
+ {q:"What did Sonia do when college work felt difficult?",a:["She stopped studying","She worked long hours and improved","She left college"],c:1,why:"She worked hard, studied for long hours, and built her skills and confidence."},
+ {q:"What job did Sonia have before becoming a judge?",a:["Assistant district attorney","Doctor","Engineer"],c:0,why:"After law school, she worked as an assistant district attorney in New York."},
+ {q:"What happened in 2009?",a:["She was born","She started elementary school","She joined the U.S. Supreme Court"],c:2,why:"Sonia Sotomayor began serving on the U.S. Supreme Court in August 2009."},
+ {q:"Why was her Supreme Court appointment historic?",a:["She was the first judge ever","She was the first Hispanic Supreme Court justice","She was the first lawyer in New York"],c:1,why:"She became the first Hispanic justice to serve on the U.S. Supreme Court."},
+ {q:"Which sentence best describes persistence?",a:["Keep working when something is hard","Give up when work is hard","Never ask for help"],c:0,why:"Persistence means continuing to work and improve even when something is difficult."}
+];
+let qi=0,score=0,answered=false;
+function renderQuiz(){
+ answered=false;
+ const x=quiz[qi];
+ document.getElementById("qCount").textContent=`Question ${qi+1} of ${quiz.length}`;
+ document.getElementById("question").textContent=x.q;
+ document.getElementById("feedback").textContent="Choose the best answer.";
+ document.getElementById("nextQ").classList.add("hidden");
+ document.getElementById("restartQ").classList.add("hidden");
+ const box=document.getElementById("choices");box.innerHTML="";
+ x.a.forEach((v,i)=>{
+  const b=document.createElement("button");b.className="choice";b.textContent=v;
+  b.onclick=()=>answerQuiz(i,b);box.appendChild(b);
+ });
+}
+function answerQuiz(i,b){
+ if(answered)return;answered=true;
+ const x=quiz[qi],buttons=[...document.querySelectorAll(".choice")];
+ buttons[x.c].classList.add("correct");
+ if(i===x.c){score++;document.getElementById("feedback").textContent="Correct! "+x.why}
+ else{b.classList.add("wrong");document.getElementById("feedback").textContent="Good try. "+x.why}
+ if(qi<quiz.length-1)document.getElementById("nextQ").classList.remove("hidden");
+ else{
+  document.getElementById("feedback").textContent+=` You finished with ${score} out of ${quiz.length} correct.`;
+  document.getElementById("restartQ").classList.remove("hidden");
+  saveProgress("quizDone",true);
+ }
+}
+function nextQuestion(){qi++;renderQuiz()}
+function restartQuiz(){qi=0;score=0;renderQuiz()}
+function reveal(id){document.getElementById(id).classList.toggle("show");saveProgress("worksheet",true);updateProgress()}
+function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"})}
+function saveProgress(k,v){try{const s=JSON.parse(localStorage.getItem("soniaGrade3")||"{}");s[k]=v;localStorage.setItem("soniaGrade3",JSON.stringify(s))}catch(e){}}
+function getProgress(){try{return JSON.parse(localStorage.getItem("soniaGrade3")||"{}")}catch(e){return {}}}
+function markStudied(el){
+ el.style.borderColor="#79c8ce";el.style.background="#f5fcfc";
+ saveProgress("story"+el.dataset.study,true);updateProgress();
+}
+function updateProgress(){
+ const s=getProgress();let done=0,total=8;
+ for(let i=1;i<=6;i++)if(s["story"+i])done++;
+ if(s.quizDone)done++;if(s.worksheet)done++;
+ const pct=Math.round(done/total*100);
+ document.getElementById("progressBar").style.width=pct+"%";
+ document.getElementById("progressText").textContent=pct+"% studied";
+ document.querySelectorAll("[data-study]").forEach(el=>{
+  if(s["story"+el.dataset.study]){el.style.borderColor="#79c8ce";el.style.background="#f5fcfc"}
+ });
+}
+renderFlash();renderQuiz();updateProgress();
+</script>
+</body>
+</html>
